@@ -7,21 +7,26 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -49,54 +54,121 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Quadrants(child: @Composable () -> Unit = {}) {
+fun Quadrants() {
     Column(Modifier.fillMaxSize()) {
         Row(Modifier.weight(1f)) {
-            Box(Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .border(
-                    1.dp,
-                    Color.Black,
-                )
+            Column(
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
             )
             {
-                child()
+                SingleDetail(
+                    icon = Icons.Default.Phone,
+                    text = "+880-1xxx-xxxxx",
+                    modifier = Modifier
+                )
+                SingleDetail(
+                    icon = Icons.Default.Phone,
+                    text = "@socialMedia",
+                    modifier = Modifier
+                )
+                SingleDetail(
+                    icon = Icons.Default.Phone,
+                    text = "someone@example.com",
+                    modifier = Modifier
+                )
             }
-            Box(Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .border(
-                    1.dp,
-                    Color.Black,
-                )
+            Box(
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .border(
+                        1.dp,
+                        Color.Black,
+                    )
             )
             {
-                child()
+                Column {
+                    TitleImage()
+                    TitleText()
+                    SubtitleText()
+                    BodyText()
+                }
             }
         }
         Row(Modifier.weight(1f)) {
-            Box(Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .border(
-                    1.dp,
-                    Color.Black,
-                )
+            Box(
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .border(
+                        1.dp,
+                        Color.Black,
+                    )
             )
             {
-                child()
+                Column {
+                    TitleImage()
+                    TitleText()
+                    SubtitleText()
+                    BodyText()
+                }
             }
-            Box(Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .border(
-                    1.dp,
-                    Color.Black,
-                )
+            Box(
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .border(
+                        1.dp,
+                        Color.Black,
+                    )
             )
             {
-                child()
+                Column {
+                    TitleImage()
+                    TitleText()
+                    SubtitleText()
+                    BodyText()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun SingleDetail(icon: ImageVector, text: String, modifier: Modifier = Modifier) {
+    Box(
+        modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ) {
+        Row(
+            Modifier
+                .background(
+                    color = Color(0xff8A784E),
+                    shape = RoundedCornerShape(10.dp)
+                ),
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            Column(
+                Modifier,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    icon,
+                    contentDescription = "Phone Icon",
+                    modifier = Modifier
+                        .padding(horizontal = 5.dp, vertical = 3.dp),
+                    tint = Color.White,
+                )
+            }
+            Box {
+                Text(
+                    text = text,
+                    color = Color.White,
+                    modifier = Modifier
+                        .padding(horizontal = 5.dp, vertical = 3.dp)
+                )
             }
         }
     }
@@ -154,14 +226,7 @@ fun TitleImage(modifier: Modifier = Modifier) {
 fun KotlinIntroPreview() {
     IntroTheme {
         Column {
-            Quadrants {
-                Column {
-                    TitleImage()
-                    TitleText()
-                    SubtitleText()
-                    BodyText()
-                }
-            }
+            Quadrants()
         }
     }
 }
